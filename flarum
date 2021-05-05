@@ -1,18 +1,24 @@
 #!/usr/bin/env php
 <?php
+
 /*
  * This file is part of Flarum.
  *
- * (c) Toby Zerner <toby.zerner@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For detailed copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
  */
 
-define('FLARUM_START', microtime(true));
+$site = require 'site.php';
 
-require 'vendor/autoload.php';
+/*
+|-------------------------------------------------------------------------------
+| Interpret console arguments
+|-------------------------------------------------------------------------------
+|
+| Flarum's console interprets all command-line arguments to select and then
+| execute corresponding commands for certain administrative tasks.
+|
+*/
 
-$server = new Flarum\Console\Server(__DIR__);
-
+$server = new Flarum\Console\Server($site);
 $server->listen();
